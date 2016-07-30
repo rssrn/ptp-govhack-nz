@@ -4,10 +4,16 @@ var orginTitle="Chirstchurch"
 var map;
 var directionsService;
 var directionsDisplay;
+
+// main layers
 var toilets;
 var dogEx;
 var picTable;
 var walkTrack;
+
+// icons for layers
+var toiletIcons = new Array();
+var dogIcons = new Array();
 
 function initMaps() {
 	var latlng = new google.maps.LatLng(originLat,originLng);
@@ -21,8 +27,6 @@ function initMaps() {
 	directionsService = new google.maps.DirectionsService();
 	map = new google.maps.Map(document.getElementById("googleMap"),mapProps);  	
 	
-	toilets = new google.maps.Data();
-	dogEx = new google.maps.Data();	
 	picTable = new google.maps.Data();	
 	walkTrack = new google.maps.Data();	
 
@@ -40,29 +44,57 @@ function initMaps() {
 }
 	
 function loadLayers(layerId,show){	
-	if(layerId==='toilets' && show){		
-		toilets.loadGeoJson('./data/toilet.geojson',null, function (feature) {
-			toilets.forEach(function(feature) {
-				addIcon(map,feature,'./images/toilet.png');
-			});  	
-		});	
-		toilets.setStyle({	  
-		  strokeWeight:0,	
-		  fillColor: 'red',
-		});	
+	if(layerId==='toilets' && show){
+		if(typeof(toilets) == 'undefined'){
+			toilets = new google.maps.Data();
+			toilets.loadGeoJson(
+				'./data/toilet.geojson', null, function (feature) {
+					toilets.forEach(function(feature) {
+						addIcon(map,feature,'./images/toilet.png',toiletIcons);
+					});
+				});
+			toilets.setStyle({	  
+				strokeWeight:0,	
+				fillColor: 'red',
+			});
+		}
 		toilets.setMap(map);
+ 		for (var icon in toiletIcons) {
+ 			toiletIcons[icon].setVisible(true);
+ 		}
 	}else if(layerId==='toilets' && !show){
-		toilets.setMap(null);		
+		toilets.setMap(null);
+
+		console.log('length: ' + toiletIcons.length);
+ 		for (var icon in toiletIcons) {
+ 			toiletIcons[icon].setVisible(false);
+ 		}
+
 	}
 	if(layerId==='dogEx' && show){
-		dogEx.loadGeoJson('./data/dogexerciseareaequipment.geojson');  
-		dogEx.setStyle({	  
-		  strokeWeight:0,	
-		  fillColor: 'black'
-		});			
+		if(typeof(dogEx) == 'undefined'){
+			dogEx = new google.maps.Data();
+			dogEx.loadGeoJson('./data/dogexerciseareaequipment.geojson');
+			dogEx.loadGeoJson(
+				'./data/dogexerciseareaequipment.geojson', null, function (feature) {
+					dogEx.forEach(function(feature) {
+						addIcon(map,feature,'./images/dog.png',dogIcons);
+					});
+				});
+			dogEx.setStyle({
+				strokeWeight:0,
+				fillColor: 'black'
+			});
+		}			
 		dogEx.setMap(map);
+		for (var icon in dogIcons) {
+ 			dogIcons[icon].setVisible(true);
+ 		}
 	}else if(layerId==='dogEx' && !show){
 		dogEx.setMap(null);	
+		for (var icon in dogIcons) {
+ 			dogIcons[icon].setVisible(false);
+ 		}
 	}
 	if(layerId==='picTable' && show){
 		picTable.loadGeoJson('./data/picnictable.geojson');  
@@ -88,7 +120,7 @@ function loadLayers(layerId,show){
 	}	
 }
 
-function addIcon(map, feature, icon) {
+function addIcon(map, feature, icon, iconArray) {
 	console.log('here');
 	if (feature.getGeometry().getType()==='Polygon') {
 
@@ -107,6 +139,8 @@ function addIcon(map, feature, icon) {
 				icon: icon
 			}
 		);
+
+		iconArray.push(mkr);
     }
 }
 
