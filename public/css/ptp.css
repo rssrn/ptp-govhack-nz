@@ -95,3 +95,6 @@ input[type="radio"],input[type="checkbox"]{
 	background: #4292C6;
 	color:#fff;
 }
+.keyicon{
+	padding-right: 5px
+}
