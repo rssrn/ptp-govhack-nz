@@ -33,14 +33,12 @@
           fillColor: 'green',
           strokeWeight: 1
         });
-        map.data.loadGeoJson('http://localhost:5000/toilet.json');
+        map.data.loadGeoJson('http://localhost:5000/datasets/toilet.geojson');
         map.data.setStyle({
           fillColor: 'red',
           strokeWeight: 1
         });
-        map.data.loadGeoJson('http://localhost:5000/dog_exercise_area.geojson');
-
-        map.data.loadGeoJson('http://localhost:5000/transport_100.json');
+        //map.data.loadGeoJson('http://localhost:5000/dog_exercise_area.geojson');
       }
     </script>
     <script async defer

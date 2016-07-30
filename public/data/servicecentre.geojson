@@ -1,0 +1,18 @@
+{
+"type": "FeatureCollection",
+                                                                                
+"features": [
+{ "type": "Feature", "properties": { "ServiceCen": 1, "domService": 1, "ServiceCe1": "Beckenham Service Centre", "ServiceCe2": "None", "LastEditDa": "None", "LastEditUs": "None" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 172.637822472896744, -43.561408672718841 ] ] } },
+{ "type": "Feature", "properties": { "ServiceCen": 2, "domService": 1, "ServiceCe1": "Linwood Service Centre", "ServiceCe2": "LINWD", "LastEditDa": "2016\/01\/20", "LastEditUs": "CCITY\\HoziasDN" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 172.674817840004522, -43.533144940795886 ] ] } },
+{ "type": "Feature", "properties": { "ServiceCen": 3, "domService": 1, "ServiceCe1": "Civic Offices", "ServiceCe2": "CIVIC", "LastEditDa": "2013\/03\/28", "LastEditUs": "CCITY\\JoergensenC" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 172.63170434485636, -43.531779121333102 ] ] } },
+{ "type": "Feature", "properties": { "ServiceCen": 4, "domService": 1, "ServiceCe1": "Shirley Service Centre", "ServiceCe2": "None", "LastEditDa": "None", "LastEditUs": "None" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 172.663124772588134, -43.505132244804038 ] ] } },
+{ "type": "Feature", "properties": { "ServiceCen": 5, "domService": 1, "ServiceCe1": "Papanui Service Centre", "ServiceCe2": "None", "LastEditDa": "None", "LastEditUs": "None" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 172.607233468291639, -43.494219365910325 ] ] } },
+{ "type": "Feature", "properties": { "ServiceCen": 6, "domService": 1, "ServiceCe1": "Fendalton Service Centre", "ServiceCe2": "FNDLTN", "LastEditDa": "None", "LastEditUs": "None" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 172.59160285357973, -43.513878089002127 ] ] } },
+{ "type": "Feature", "properties": { "ServiceCen": 7, "domService": 1, "ServiceCe1": "Hornby Service Centre", "ServiceCe2": "HORNBY", "LastEditDa": "2016\/01\/20", "LastEditUs": "CCITY\\HoziasDN" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 172.522530461642532, -43.544636201067057 ] ] } },
+{ "type": "Feature", "properties": { "ServiceCen": 8, "domService": 1, "ServiceCe1": "Riccarton Service Centre", "ServiceCe2": "None", "LastEditDa": "2013\/03\/28", "LastEditUs": "CCITY\\JoergensenC" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 172.601809339226179, -43.530950793149472 ] ] } },
+{ "type": "Feature", "properties": { "ServiceCen": 9, "domService": 1, "ServiceCe1": "Lyttelton Service Centre", "ServiceCe2": "LYTTON", "LastEditDa": "2016\/01\/20", "LastEditUs": "CCITY\\HoziasDN" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 172.72183473796585, -43.602899446504352 ] ] } },
+{ "type": "Feature", "properties": { "ServiceCen": 10, "domService": 1, "ServiceCe1": "Little River Service Centre", "ServiceCe2": "None", "LastEditDa": "None", "LastEditUs": "None" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 172.791055266150494, -43.770245721919032 ] ] } },
+{ "type": "Feature", "properties": { "ServiceCen": 11, "domService": 1, "ServiceCe1": "Akaroa Service Centre", "ServiceCe2": "AKAROA", "LastEditDa": "2016\/01\/20", "LastEditUs": "CCITY\\HoziasDN" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 172.968428101840857, -43.803091810054603 ] ] } },
+{ "type": "Feature", "properties": { "ServiceCen": 13, "domService": 1, "ServiceCe1": "Te Hapua Halswell Service Centre", "ServiceCe2": "HLSWEL", "LastEditDa": "2016\/01\/19", "LastEditUs": "CCITY\\HoziasDN" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 172.56863887034811, -43.581129404183869 ] ] } }
+]
+}
