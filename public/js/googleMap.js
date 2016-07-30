@@ -12,6 +12,7 @@ var heritage = new google.maps.Data();
 var art;
 var picTable;
 var walkTrack;
+var eventsAug;
 
 // icons for layers
 var toiletIcons = new Array();
@@ -33,6 +34,7 @@ function initMaps() {
 	
 	picTable = new google.maps.Data();	
 	art = new google.maps.Data();
+	eventsAug = new google.maps.Data();
 
 	var rendererOptions = { draggable: true };  		
 	directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);
@@ -133,6 +135,19 @@ function loadLayers(layerId,show){
 		art.setMap(map);
 	}else if(layerId==='art' && !show){
 		art.setMap(null);	
+	}
+
+	if(layerId==='event' && show){
+		eventsAug.loadGeoJson('./data/events_chch_201608.geojson');  
+		eventsAug.setStyle({	  
+		  strokeWeight:0,	
+		  fillColor: 'transparent',
+		  icon: './images/event.png'
+		});			
+
+		eventsAug.setMap(map);
+	}else if(layerId==='event' && !show){
+		eventsAug.setMap(null);	
 	}
 }
 
