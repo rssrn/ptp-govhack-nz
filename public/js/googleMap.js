@@ -14,22 +14,28 @@ function initMaps() {
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	}
 
-	map = new google.maps.Map(document.getElementById("googleMap"),mapProps);  		
+	map = new google.maps.Map(document.getElementById("googleMap"),mapProps);  	
+
 	/*new google.maps.Marker({
 		position: latlng, 
 	    map: map, 
 	    title:orginTitle
-	});*/ 
+	});*/
 	
 	var toilets = new google.maps.Data();
 	var dogEx = new google.maps.Data();
 
-	toilets.loadGeoJson('toilet.json');  	
+	toilets.loadGeoJson('toilet.json', null, function (feature) {
+		console.log("loadGeoJson", feature.length);
+		toilets.forEach(function(feature) {
+			addIcon(map,feature,'toilet_1.png');
+		});
+	});
 	toilets.setStyle({	  
 	  strokeWeight:0,	
 	  fillColor: 'red'
 	});
-
+		
 	dogEx.loadGeoJson('dog_exercise_area.geojson');  
 	dogEx.setStyle({	  
 	  strokeWeight:0,	
@@ -40,6 +46,34 @@ function initMaps() {
 	dogEx.setMap(map);
 
 }
+
+function addIcon(map, feature, icon) {
+	console.log('here');
+	if (feature.getGeometry().getType()==='Polygon') {
+
+        // initialize the bounds
+        var bounds=new google.maps.LatLngBounds();
+
+        // iterate over the paths
+        feature.getGeometry().getArray().forEach(function(path){
+
+            //iterate over the points in the path
+            path.getArray().forEach(function(latLng){
+				bounds.extend(latLng);
+            });
+
+        });
+
+		mkr = new google.maps.Marker(
+			{
+				position: bounds.getCenter(),
+				map: map,
+				icon: icon
+			}
+		);
+    }
+}
+
 function getDirections(){
 	var travelMode = $('input[name="travelMode"]:checked').val();
 	var start = $("#routeStart").val();
