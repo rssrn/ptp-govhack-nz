@@ -7,4 +7,7 @@ $(document).ready(function(){
 		$(this).addClass('active')
 		$('#main').load($(this).data('href'));
 	})
+	$('#main').on('click','.ontheway',function(){
+		loadLayers($(this).val(),$(this).prop('checked'));
+	})
 })

@@ -3,43 +3,74 @@
 		<div class="hero-text">			
 			<h1>Plan, Pack, Go...</h1>
 			<h4>A perfect trip with your loved ones with no gotcha.</h4>			
-			<button class="btn"> Start planning</button>
+			<button class="btn"><i class="fa fa-cab"></i> START PLANNING</button>
 		</div>
 	</div>			
 	<div class="container-fluid">
-	    <div id="googleMap" class="row" style="height: 400px">map</div>
-		<div class="col-sm-7">
-            <label for="routeStart"><strong>Destination From:</strong></label>
-            <input type="text" id="routeStart" placeholder="15 Wellesley Street, Auckland">
-            <label for="routeEnd"><strong>Destination To:</strong></label>
-            <input type="text" id="routeEnd" placeholder="15 Wellesley Street, Auckland">            
-		</div>		
-		<div class="col-sm-7">
-            <label for="travelMode">Travel mode:</label>
-            <div>
-              <label for="travelModeCar" class="radio-option">
-                <input type="radio" name="travelMode" id="travelModeCar" value="DRIVING" checked="true">Driving
-              </label>
-              <label for="travelModeBicycle" class="radio-option">
-                <input type="radio" name="travelMode" id="travelMode2" value="BICYCLING">Cycling
-              </label>
-              <label for="travelModeTransit" class="radio-option">
-                <input type="radio" name="travelMode" id="travelMode3" value="TRANSIT">Public transport
-              </label>
-              <label for="travelModeWalk" class="radio-option">
-                <input type="radio" name="travelMode" id="travelMode4" value="WALKING">Walking
-              </label>
+	    <div id="googleMap" class="row" style="height: 400px">
+        <div class="loading">
+          <i class="fa fa-car"></i>
+          <span >Loading...</span>
+         </div> 
+      </div>
+      <div class="container filter">        
+          <div class="col-md-6 row ">            
+            <h4>Trip</h4>
+            <table class="table">
+              <tr>
+                <td><label for="routeStart">Destination From:</label></td>
+                <td><input type="text" size="40" id="routeStart" placeholder="University of Canterbury, 20 Kirkwood Avenue, Upper Riccarton, Christchurch 8041" value="University of Canterbury, 20 Kirkwood Avenue, Upper Riccarton, Christchurch 8041"></td>
+              </tr>
+              <tr>
+                <td><label for="routeEnd">Destination To:</label></td>
+                <td><input type="text" size="40" id="routeEnd" placeholder="Canterbury Museum, Christchurch Central, Christchurch 8013" value="Canterbury Museum, Christchurch Central, Christchurch 8013"> </td>
+              </tr>
+              <tr>
+                <td><label for="travelMode">Travel mode:</label></td>
+                <td>
+                    <input type="radio" name="travelMode" id="travelModeCar" value="DRIVING" checked="true">Driving              
+                    <input type="radio" name="travelMode" id="travelMode2" value="BICYCLING">Cycling
+                    <input type="radio" name="travelMode" id="travelMode3" value="TRANSIT">Public transport
+                    <input type="radio" name="travelMode" id="travelMode4" value="WALKING">Walking
+                    </label>
+                </td>                
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <button type="button" onclick="getDirections()" class="btn btn-submit"><i class="fa fa-map-marker"></i>Get Directions</button>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="col-md-4 col-md-offset-2">  
+            <h4>Shown me on the way</h4>
+            <table class="table ontheway">             
+              <tr>
+                <td>
+                  <input type="checkbox" class="ontheway" name="toilets" id="toilets" value="toilets">Toilets  
+                </td>
+              </tr> 
+              <tr>
+                <td>
+                  <input type="checkbox" class="ontheway" name="dogEx" id="dogEx" value="dogEx">Dog Exercise Areas  
+                </td>
+              </tr> 
+              <tr>
+                <td>
+                  <input type="checkbox" class="ontheway" name="picTable" id="picTable" value="picTable">Picnic Table
+                </td>
+              </tr> 
+              <tr>
+                <td>
+                  <input type="checkbox" class="ontheway" name="walkTrack" id="walkTrack" value="walkTrack">Walking Tracks
+                </td>
+              </tr>            
+            </table>  
+          </div>
+          <div class="col-md-12 row">         
+            <h4>Directions</h4>
+            <div id="directionsResults">                                 
             </div>
-		</div>
-		<div class="col-sm-5">
-	        <button type="button" onclick="getDirections()" class="btn btn-submit"><i class="fa fa-map-marker">Get Directions</i></button>
-		</div>		
-		<div class="col-sm-12 column">
-            <div class="column-content directions">
-              <h4>Directions</h4>
-              <div id="directionsResults">                                 
-              </div>
-            </div>
-        </div>
-	</div>
+          </div>  
+      </div>     		  			
 </div>

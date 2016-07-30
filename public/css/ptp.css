@@ -7,6 +7,15 @@ body{
 h3{
 	font-weight: 300;	
 }
+input[type="radio"],input[type="checkbox"]{
+	margin: 0 4px;
+}
+.fa{
+	padding-right:10px; 
+}
+.loading{
+	text-align: center;
+}
 .no-padding{
 	padding: 0
 }
@@ -75,12 +84,14 @@ h3{
 	padding: 15px 
 }
 
-
+.filter{
+	margin-top:20px;
+}
 .btn{
  	background: #2171B5;
  	color:#fff;
 }
-.btn:hover{
+.btn:hover,.btn:active,.btn:focus{
 	background: #4292C6;
 	color:#fff;
 }

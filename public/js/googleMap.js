@@ -1,6 +1,6 @@
 var originLat=-43.53;
 var originLng=172.63;
-var orginTitle="Logan Campbell Center"
+var orginTitle="Chirstchurch"
 var directionsDisplay;
 var map;
 var directionsService = new google.maps.DirectionsService();
@@ -22,29 +22,60 @@ function initMaps() {
 	    title:orginTitle
 	});*/
 	
+	//loadLayers();
+}
+
+function loadLayers(layerId,show){
 	var toilets = new google.maps.Data();
-	var dogEx = new google.maps.Data();
-
-	toilets.loadGeoJson('toilet.json', null, function (feature) {
-		console.log("loadGeoJson", feature.length);
-		toilets.forEach(function(feature) {
-			addIcon(map,feature,'toilet_1.png');
-		});
-	});
-	toilets.setStyle({	  
-	  strokeWeight:0,	
-	  fillColor: 'red'
-	});
-		
-	dogEx.loadGeoJson('dog_exercise_area.geojson');  
-	dogEx.setStyle({	  
-	  strokeWeight:0,	
-	  fillColor: 'black'
-	});
-
-	toilets.setMap(map);
-	dogEx.setMap(map);
-
+	var dogEx = new google.maps.Data();	
+	var picTable = new google.maps.Data();	
+	var walkTrack = new google.maps.Data();	
+	debugger;
+	if(layerId==='toilets' && show){
+		toilets.loadGeoJson('./data/toilet.json',null, function (feature) {
+			toilets.forEach(function(feature) {
+				addIcon(map,feature,'./images/toilet.png');
+			});  	
+		});	
+		toilets.setStyle({	  
+		  strokeWeight:0,	
+		  fillColor: 'red'
+		});	
+		toilets.setMap(map);
+	}else if(layerId==='toilets' && !show){
+		console.log("diable")
+		toilets.setMap(null);	
+	}
+	if(layerId==='dogEx' && show){
+		dogEx.loadGeoJson('./data/dog_exercise_area.geojson');  
+		dogEx.setStyle({	  
+		  strokeWeight:0,	
+		  fillColor: 'black'
+		});			
+		dogEx.setMap(map);
+	}else if(layerId==='dogEx' && !show){
+		dogEx.setMap(null);	
+	}
+	if(layerId==='picTable' && show){
+		picTable.loadGeoJson('./data/picnic_table.geojson');  
+		picTable.setStyle({	  
+		  strokeWeight:0,	
+		  fillColor: 'brown'
+		});			
+		picTable.setMap(map);
+	}else if(layerId==='picTable' && !show){
+		picTable.setMap(null);	
+	}
+	if(layerId==='walkTrack' && show){
+		walkTrack.loadGeoJson('./data/walking_track.geojson');  
+		walkTrack.setStyle({	  
+		  strokeWeight:0,	
+		  fillColor: 'orange'
+		});			
+		walkTrack.setMap(map);
+	}else if(layerId==='walkTrack' && !show){
+		walkTrack.setMap(null);	
+	}	
 }
 
 function addIcon(map, feature, icon) {
@@ -77,7 +108,7 @@ function addIcon(map, feature, icon) {
 function getDirections(){
 	var travelMode = $('input[name="travelMode"]:checked').val();
 	var start = $("#routeStart").val();
-	var end = (originLat + "," + originLng);
+	var end = $("#routeEnd").val();
 	var waypoints=[];
 	var request = {
 	origin: start,
@@ -113,5 +144,6 @@ function getDirections(){
 	        alert("There was an unknown error in your request. Requeststatus: nn"+status);
 	    }
     }
+    loadLayers();
 });
 }
