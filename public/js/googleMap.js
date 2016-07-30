@@ -14,6 +14,7 @@ var walkTrack;
 // icons for layers
 var toiletIcons = new Array();
 var dogIcons = new Array();
+var walkIcons = new Array();
 
 function initMaps() {
 	var latlng = new google.maps.LatLng(originLat,originLng);
@@ -28,7 +29,7 @@ function initMaps() {
 	map = new google.maps.Map(document.getElementById("googleMap"),mapProps);  	
 	
 	picTable = new google.maps.Data();	
-	walkTrack = new google.maps.Data();	
+	
 
 	var rendererOptions = { draggable: true };  		
 	directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);
@@ -55,7 +56,7 @@ function loadLayers(layerId,show){
 				});
 			toilets.setStyle({	  
 				strokeWeight:0,	
-				fillColor: 'red',
+				fillColor: 'transparent',
 			});
 		}
 		toilets.setMap(map);
@@ -96,6 +97,34 @@ function loadLayers(layerId,show){
  			dogIcons[icon].setVisible(false);
  		}
 	}
+	
+	if(layerId==='walkTrack' && show){
+		if(typeof(walkTrack) == 'undefined'){
+			walkTrack = new google.maps.Data();
+			walkTrack.loadGeoJson('./data/walkingtrack.geojson'); 
+			walkTrack.loadGeoJson(
+					'./data/dogexerciseareaequipment.geojson', null, function (feature) {
+						walkTrack.forEach(function(feature) {
+							addIcon(map,feature,'./images/walking.png',walkIcons);
+						});
+					}); 
+			walkTrack.setStyle({	  
+			  strokeWeight:3,
+			  strokeColor:'DarkGreen',	
+			  fillColor: 'DarkGreen'
+			});			
+		}	
+		walkTrack.setMap(map);
+		for (var icon in walkIcons) {
+ 			walkIcons[icon].setVisible(true);
+ 		}
+	}else if(layerId==='walkTrack' && !show){
+		walkTrack.setMap(null);	
+		for (var icon in walkIcons) {
+ 			walkIcons[icon].setVisible(false);
+ 		}
+	}	
+
 	if(layerId==='picTable' && show){
 		picTable.loadGeoJson('./data/picnictable.geojson');  
 		picTable.setStyle({	  
@@ -108,16 +137,6 @@ function loadLayers(layerId,show){
 	}else if(layerId==='picTable' && !show){
 		picTable.setMap(null);	
 	}
-	if(layerId==='walkTrack' && show){
-		walkTrack.loadGeoJson('./data/walkingtrack.geojson');  
-		walkTrack.setStyle({	  
-		  strokeWeight:1,	
-		  fillColor: 'orange'
-		});			
-		walkTrack.setMap(map);
-	}else if(layerId==='walkTrack' && !show){
-		walkTrack.setMap(null);	
-	}	
 }
 
 function addIcon(map, feature, icon, iconArray) {

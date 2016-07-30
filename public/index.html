@@ -10,16 +10,25 @@
 	<link rel="stylesheet" href="./css/ptp.css">
 </head>
 <body>	
-	<header id="header">
+	<header id="header">				
 		<nav class="navbar navbar-fixed-top">
-			<div class="container">
-			    <a class="navbar-brand" href="#">PTP</a>
-				<ul class="nav navbar-nav navbar-right">
-					<li data-href="home.html" class="active"><a href="#">Home</a></li>	
-					<li data-href="about.html"><a href="#">About</a></li>	
-					<li data-href="team.html"><a href="#">Team</a></li>
-				</ul>
-			</div>	
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-nav" aria-expanded="false">
+				        <span class="sr-only">Toggle navigation</span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>		
+			        </button>
+			        <a class="navbar-brand" href="#">PTP</a>	        
+		    	</div>
+				<div class="collapse navbar-collapse" id="main-nav">				    
+						<ul class="nav navbar-nav navbar-right">
+							<li data-href="home.html" class="active"><a href="#">Home</a></li>	
+							<li data-href="about.html"><a href="#">About</a></li>	
+							<li data-href="team.html"><a href="#">Team</a></li>
+						</ul>
+				</div>
+			</div>
 		</nav>
 	</header><!-- /header -->
 	<section id="main" class="main-content">
@@ -34,5 +43,6 @@
 	<script src="./js/ptp.js"></script>	
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBomtPX2r5IXNcmaXx9vLoiHueVUEFno6k"></script>
 	<script src="./js/googleMap.js"></script>	
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </body>
 </html>

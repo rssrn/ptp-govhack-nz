@@ -10,4 +10,9 @@ $(document).ready(function(){
 	$('#main').on('click','.ontheway',function(){
 		loadLayers($(this).val(),$(this).prop('checked'));
 	})
+	$('#main').on('click','.btn-plan',function(){
+		$('html, body').animate({
+            scrollTop:($("#googleMap").offset().top - 50)
+        }, 1000);
+	})
 })

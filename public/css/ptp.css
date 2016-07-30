@@ -10,6 +10,9 @@ h3{
 input[type="radio"],input[type="checkbox"]{
 	margin: 0 4px;
 }
+#googleMap{
+	background: #eee;
+}
 .fa{
 	padding-right:10px; 
 }
@@ -22,6 +25,7 @@ input[type="radio"],input[type="checkbox"]{
 .navbar{
 	background: #2171B5;
 	color:#fff;
+	padding: 0 15px;
 }
 .navbar a{
 	color:#fff;
@@ -36,7 +40,42 @@ input[type="radio"],input[type="checkbox"]{
 	border-right: 1px solid #2171B5;
 	border-left: 1px solid #2171B5;	
 }
-
+.icon-bar{
+	background: #fff;
+}
+.app-title{
+	background: #2171B5;
+	color: #fff;
+	padding: 5px;
+	text-align: center;
+}
+.app-title h3{
+	padding: 0;
+}
+.app-features{
+	padding: 40px 0;
+}
+input[type="text"]{
+	width: 100%;
+}
+label{
+	display: block;
+}
+.table>tbody>tr>td:first-child{
+	border: 0;
+}
+.box{
+	display: inline-block;
+	width:120px;
+	padding:10px 0;
+	border: 1px #4292C6 solid;
+	border-radius: 5px;
+	margin: 10px 0;
+	margin-right:15px; 
+}
+.box span{
+	display: block;
+}
 .main-content{
 	padding-top: 50px;
 	min-height: 800px;
@@ -51,7 +90,7 @@ input[type="radio"],input[type="checkbox"]{
     padding-top:150px;
 }
 .hero{
-	background-image: url(../images/hero.jpg);
+	background-image: url(../images/hero.jpg);	
 }
 .about-hero{
 	background-image: url(../images/about.jpg);
@@ -64,8 +103,9 @@ input[type="radio"],input[type="checkbox"]{
 .team-members{
 	margin-top:50px;
 }
-.team-members .row{
-	margin:50px 0; 
+.team-members div{
+	margin-top:30px; 
+	margin-bottom:30px; 
 }
 .member-detail{
 	display: inline-block;
@@ -90,6 +130,7 @@ input[type="radio"],input[type="checkbox"]{
 .btn{
  	background: #2171B5;
  	color:#fff;
+ 	transition: all 0.3s linear;
 }
 .btn:hover,.btn:active,.btn:focus{
 	background: #4292C6;

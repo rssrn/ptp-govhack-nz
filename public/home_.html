@@ -18,7 +18,7 @@
               <span>Dog Areas</span>
           </div>
           <div class="box">
-              <img src="./images/picnic-50.png">
+              <img src="./images/walking-50.png">
               <span>Picnic Tables</span>
           </div>
           <div class="box">
@@ -27,32 +27,31 @@
           </div>
       </div>
   </div>
-   <div class="app-title">
+  <div class="col-md-12   app-title">
       <h3>Personalized Trip Planner</h3>
   </div>
-  <div id="googleMap" class="row" style="height: 400px">
-    <div class="loading">
-      <i class="fa fa-car"></i>
-      <span >Loading...</span>
-     </div> 
-  </div>  
-	<div class="container-fluid">
-	    
+	<div class="container-fluid">      
+	    <div id="googleMap" class="row" style="height: 400px">
+        <div class="loading">
+          <i class="fa fa-car"></i>
+          <span >Loading Map...</span>
+         </div> 
+      </div>      
       <div class="container filter">        
           <div class="col-md-6 row ">            
             <h4>Trip</h4>
             <table class="table">
               <tr>
-                <td><label for="routeStart">Destination From:</label>
-                <input type="text" id="routeStart" placeholder="University of Canterbury, 20 Kirkwood Avenue, Upper Riccarton, Christchurch 8041" value="University of Canterbury, 20 Kirkwood Avenue, Upper Riccarton, Christchurch 8041"></td>
+                <td><label for="routeStart">Destination From:</label></td>
+                <td><input type="text" size="40" id="routeStart" placeholder="University of Canterbury, 20 Kirkwood Avenue, Upper Riccarton, Christchurch 8041" value="University of Canterbury, 20 Kirkwood Avenue, Upper Riccarton, Christchurch 8041"></td>
               </tr>
               <tr>
-                <td><label for="routeEnd">Destination To:</label>
-                <input type="text" id="routeEnd" placeholder="Canterbury Museum, Christchurch Central, Christchurch 8013" value="Canterbury Museum, Christchurch Central, Christchurch 8013"> </td>
+                <td><label for="routeEnd">Destination To:</label></td>
+                <td><input type="text" size="40" id="routeEnd" placeholder="Canterbury Museum, Christchurch Central, Christchurch 8013" value="Canterbury Museum, Christchurch Central, Christchurch 8013"> </td>
               </tr>
               <tr>
+                <td><label for="travelMode">Travel mode:</label></td>
                 <td>
-                    <label for="travelMode">Travel mode:</label>
                     <input type="radio" name="travelMode" id="travelModeCar" value="DRIVING" checked="true">Driving              
                     <input type="radio" name="travelMode" id="travelMode2" value="BICYCLING">Cycling
                     <input type="radio" name="travelMode" id="travelMode3" value="TRANSIT">Public transport
@@ -67,12 +66,12 @@
               </tr>
             </table>
           </div>
-          <div class="col-md-4 col-md-offset-2 row">  
+          <div class="col-md-4 col-md-offset-2">  
             <h4>Shown me on the way</h4>
             <table class="table ontheway">             
               <tr>
                 <td>
-                  <img class="keyicon" src="./images/toilet.png"><input type="checkbox" class="ontheway" name="toilets" id="toilets" value="toilets">Toilets
+                  <img class="keyicon" src="./images/toilet.png"><input type="checkbox" class="ontheway" name="toilets" id="toilets" value="toilets">Restrooms
                 </td>
               </tr> 
               <tr>
@@ -94,8 +93,8 @@
           </div>
           <div class="col-md-12 row">         
             <h4>Directions</h4>
-            <div id="directionsResults">                                 
-                Enter <strong>Destination From</strong> under <strong>Get Directions</strong> and Click on Get Directions Button.
+            <div id="directionsResults">   
+                 Enter <strong>Destination From</strong> under <strong>Get Directions</strong> and Click on Get Directions Button.                              
             </div>
           </div>  
       </div>     		  			
