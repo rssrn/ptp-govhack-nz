@@ -8,12 +8,14 @@ var directionsDisplay;
 // main layers
 var toilets = new google.maps.Data();
 var dogEx = new google.maps.Data();
+var heritage = new google.maps.Data();
 var picTable;
 var walkTrack;
 
 // icons for layers
 var toiletIcons = new Array();
 var dogIcons = new Array();
+var heritageIcons = new Array();
 var walkIcons = new Array();
 
 function initMaps() {
@@ -67,6 +69,17 @@ function loadLayers(layerId,show){
 	}else if(layerId==='dogEx' && !show){
 		hidePolygonLayer(dogEx,dogIcons);
 	}
+	if(layerId==='heritage' && show){
+		showPolygonLayer(
+			'./data/districtplanheritageitem.geojson',
+			'./images/heritage.png',
+			heritage,
+			heritageIcons,
+			'orange'
+		);
+	}else if(layerId==='heritage' && !show){
+		hidePolygonLayer(heritage,heritageIcons);
+	}
 	
 	if(layerId==='walkTrack' && show){
 		if(typeof(walkTrack) == 'undefined'){
@@ -111,7 +124,6 @@ function loadLayers(layerId,show){
 
 function showPolygonLayer(geojson,image,layer,icons,color) {
 	if(typeof(layer.getMap()) == 'undefined'){
-		console.log('loading polygon layer');
 		layer.loadGeoJson(
 			geojson, null, function (feature) {
 				layer.forEach(function(feature) {
@@ -138,8 +150,26 @@ function hidePolygonLayer(layer,icons) {
 }
 
 function addIcon(map, feature, icon, iconArray) {
-	console.log('here');
-	if (feature.getGeometry().getType()==='Polygon') {
+	if (feature.getGeometry().getType()==='MultiPolygon') {
+        var bounds=new google.maps.LatLngBounds();
+		feature.getGeometry().getArray().forEach(function(polys){
+            polys.getArray().forEach(function(poly){
+				poly.forEachLatLng(function(latLng){
+					bounds.extend(latLng);
+				});
+            });
+        });
+		mkr = new google.maps.Marker(
+			{
+				position: bounds.getCenter(),
+				map: map,
+				icon: icon
+			}
+		);
+
+		iconArray.push(mkr);
+
+	}else if (feature.getGeometry().getType()==='Polygon') {
 
 		// get overall bounds so we can estimate the centre
         var bounds=new google.maps.LatLngBounds();
