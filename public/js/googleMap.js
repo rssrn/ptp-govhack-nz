@@ -32,7 +32,7 @@ function loadLayers(layerId,show){
 	var walkTrack = new google.maps.Data();	
 	debugger;
 	if(layerId==='toilets' && show){
-		toilets.loadGeoJson('./data/toilet.json',null, function (feature) {
+		toilets.loadGeoJson('./data/toilet.geojson',null, function (feature) {
 			toilets.forEach(function(feature) {
 				addIcon(map,feature,'./images/toilet.png');
 			});  	
@@ -47,7 +47,7 @@ function loadLayers(layerId,show){
 		toilets.setMap(null);	
 	}
 	if(layerId==='dogEx' && show){
-		dogEx.loadGeoJson('./data/dog_exercise_area.geojson');  
+		dogEx.loadGeoJson('./data/dogexerciseareaequipment.geojson');  
 		dogEx.setStyle({	  
 		  strokeWeight:0,	
 		  fillColor: 'black'
@@ -57,7 +57,7 @@ function loadLayers(layerId,show){
 		dogEx.setMap(null);	
 	}
 	if(layerId==='picTable' && show){
-		picTable.loadGeoJson('./data/picnic_table.geojson');  
+		picTable.loadGeoJson('./data/picnictable.geojson');  
 		picTable.setStyle({	  
 		  strokeWeight:0,	
 		  fillColor: 'brown'
@@ -67,7 +67,7 @@ function loadLayers(layerId,show){
 		picTable.setMap(null);	
 	}
 	if(layerId==='walkTrack' && show){
-		walkTrack.loadGeoJson('./data/walking_track.geojson');  
+		walkTrack.loadGeoJson('./data/walkingtrack.geojson');  
 		walkTrack.setStyle({	  
 		  strokeWeight:0,	
 		  fillColor: 'orange'
