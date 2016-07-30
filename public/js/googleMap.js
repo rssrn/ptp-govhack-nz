@@ -6,8 +6,8 @@ var directionsService;
 var directionsDisplay;
 
 // main layers
-var toilets;
-var dogEx;
+var toilets = new google.maps.Data();
+var dogEx = new google.maps.Data();
 var picTable;
 var walkTrack;
 
@@ -46,56 +46,26 @@ function initMaps() {
 	
 function loadLayers(layerId,show){	
 	if(layerId==='toilets' && show){
-		if(typeof(toilets) == 'undefined'){
-			toilets = new google.maps.Data();
-			toilets.loadGeoJson(
-				'./data/toilet.geojson', null, function (feature) {
-					toilets.forEach(function(feature) {
-						addIcon(map,feature,'./images/toilet.png',toiletIcons);
-					});
-				});
-			toilets.setStyle({	  
-				strokeWeight:0,	
-				fillColor: 'transparent',
-			});
-		}
-		toilets.setMap(map);
- 		for (var icon in toiletIcons) {
- 			toiletIcons[icon].setVisible(true);
- 		}
+		showPolygonLayer(
+			'./data/toilet.geojson',
+			'./images/toilet.png',
+			toilets,
+			toiletIcons,
+			'transparent'
+		);
 	}else if(layerId==='toilets' && !show){
-		toilets.setMap(null);
-
-		console.log('length: ' + toiletIcons.length);
- 		for (var icon in toiletIcons) {
- 			toiletIcons[icon].setVisible(false);
- 		}
-
+		hidePolygonLayer(toilets,toiletIcons);
 	}
 	if(layerId==='dogEx' && show){
-		if(typeof(dogEx) == 'undefined'){
-			dogEx = new google.maps.Data();
-			dogEx.loadGeoJson('./data/dogexerciseareaequipment.geojson');
-			dogEx.loadGeoJson(
-				'./data/dogexerciseareaequipment.geojson', null, function (feature) {
-					dogEx.forEach(function(feature) {
-						addIcon(map,feature,'./images/dog.png',dogIcons);
-					});
-				});
-			dogEx.setStyle({
-				strokeWeight:0,
-				fillColor: 'black'
-			});
-		}			
-		dogEx.setMap(map);
-		for (var icon in dogIcons) {
- 			dogIcons[icon].setVisible(true);
- 		}
+		showPolygonLayer(
+			'./data/dogexerciseareaequipment.geojson',
+			'./images/dog.png',
+			dogEx,
+			dogIcons,
+			'black'
+		);
 	}else if(layerId==='dogEx' && !show){
-		dogEx.setMap(null);	
-		for (var icon in dogIcons) {
- 			dogIcons[icon].setVisible(false);
- 		}
+		hidePolygonLayer(dogEx,dogIcons);
 	}
 	
 	if(layerId==='walkTrack' && show){
@@ -137,6 +107,34 @@ function loadLayers(layerId,show){
 	}else if(layerId==='picTable' && !show){
 		picTable.setMap(null);	
 	}
+}
+
+function showPolygonLayer(geojson,image,layer,icons,color) {
+	if(typeof(layer.getMap()) == 'undefined'){
+		console.log('loading polygon layer');
+		layer.loadGeoJson(
+			geojson, null, function (feature) {
+				layer.forEach(function(feature) {
+					addIcon(map,feature,image,icons);
+				});
+			});
+		layer.setStyle({	  
+			strokeWeight:0,	
+			fillColor: color,
+		});
+	}
+	layer.setMap(map);
+ 	for (var icon in icons) {
+ 		icons[icon].setVisible(true);
+ 	}
+}
+
+function hidePolygonLayer(layer,icons) {
+	layer.setMap(null);
+
+ 	for (var icon in icons) {
+ 		icons[icon].setVisible(false);
+ 	}
 }
 
 function addIcon(map, feature, icon, iconArray) {
