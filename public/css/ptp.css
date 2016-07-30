@@ -139,3 +139,9 @@ label{
 .keyicon{
 	padding-right: 5px
 }
+.popupWindow_main{
+	font-size: 20px;
+	font-weight: 300;
+	font-family: 'Lato', Calibri, Arial, sans-serif;
+	line-height: 1.5;
+}

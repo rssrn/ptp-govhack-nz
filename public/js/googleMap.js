@@ -20,6 +20,8 @@ var dogIcons = new Array();
 var heritageIcons = new Array();
 var walkIcons = new Array();
 
+var infoWindow = new google.maps.InfoWindow();
+
 function initMaps() {
 	var latlng = new google.maps.LatLng(originLat,originLng);
 	var mapProps={
@@ -146,6 +148,13 @@ function loadLayers(layerId,show){
 		});			
 
 		eventsAug.setMap(map);
+
+		eventsAug.addListener('click', function(event) {
+			infoWindow.setContent("<div class='popupWindow_main'>" + event.feature.getProperty("name") + "</div>");
+			infoWindow.setPosition(event.feature.getGeometry().get());
+			infoWindow.open(map);
+		});
+		
 	}else if(layerId==='event' && !show){
 		eventsAug.setMap(null);	
 	}
