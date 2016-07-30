@@ -20,16 +20,24 @@ function initMaps() {
 	    map: map, 
 	    title:orginTitle
 	});*/ 
-	map.data.setStyle({	  
+	
+	var toilets = new google.maps.Data();
+	var dogEx = new google.maps.Data();
+
+	toilets.loadGeoJson('toilet.json');  	
+	toilets.setStyle({	  
 	  strokeWeight:0,	
 	  fillColor: 'red'
 	});
-	map.data.loadGeoJson('toilet.json');  
-	map.data.setStyle({	  
+
+	dogEx.loadGeoJson('dog_exercise_area.geojson');  
+	dogEx.setStyle({	  
 	  strokeWeight:0,	
 	  fillColor: 'black'
 	});
-	map.data.loadGeoJson('dog_exercise_area.geojson');  
+
+	toilets.setMap(map);
+	dogEx.setMap(map);
 
 }
 function getDirections(){
