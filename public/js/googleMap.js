@@ -60,7 +60,8 @@ function loadLayers(layerId,show){
 		picTable.loadGeoJson('./data/picnictable.geojson');  
 		picTable.setStyle({	  
 		  strokeWeight:0,	
-		  fillColor: 'brown'
+		  fillColor: 'brown',
+		  icon: './images/picnic.png'
 		});			
 		picTable.setMap(map);
 	}else if(layerId==='picTable' && !show){
@@ -82,17 +83,12 @@ function addIcon(map, feature, icon) {
 	console.log('here');
 	if (feature.getGeometry().getType()==='Polygon') {
 
-        // initialize the bounds
+		// get overall bounds so we can estimate the centre
         var bounds=new google.maps.LatLngBounds();
-
-        // iterate over the paths
         feature.getGeometry().getArray().forEach(function(path){
-
-            //iterate over the points in the path
             path.getArray().forEach(function(latLng){
 				bounds.extend(latLng);
             });
-
         });
 
 		mkr = new google.maps.Marker(
