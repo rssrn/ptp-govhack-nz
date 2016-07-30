@@ -9,6 +9,7 @@ var directionsDisplay;
 var toilets = new google.maps.Data();
 var dogEx = new google.maps.Data();
 var heritage = new google.maps.Data();
+var art;
 var picTable;
 var walkTrack;
 
@@ -31,7 +32,7 @@ function initMaps() {
 	map = new google.maps.Map(document.getElementById("googleMap"),mapProps);  	
 	
 	picTable = new google.maps.Data();	
-	
+	art = new google.maps.Data();
 
 	var rendererOptions = { draggable: true };  		
 	directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);
@@ -119,6 +120,19 @@ function loadLayers(layerId,show){
 		picTable.setMap(map);
 	}else if(layerId==='picTable' && !show){
 		picTable.setMap(null);	
+	}
+
+	if(layerId==='art' && show){
+		art.loadGeoJson('./data/artwork.geojson');  
+		art.setStyle({	  
+		  strokeWeight:0,	
+		  fillColor: 'transparent',
+		  icon: './images/art.png'
+		});			
+
+		art.setMap(map);
+	}else if(layerId==='art' && !show){
+		art.setMap(null);	
 	}
 }
 
