@@ -1,9 +1,14 @@
 var originLat=-43.53;
 var originLng=172.63;
 var orginTitle="Chirstchurch"
-var directionsDisplay;
 var map;
-var directionsService = new google.maps.DirectionsService();
+var directionsService;
+var directionsDisplay;
+var toilets;
+var dogEx;
+var picTable;
+var walkTrack;
+
 function initMaps() {
 	var latlng = new google.maps.LatLng(originLat,originLng);
 	var mapProps={
@@ -13,8 +18,16 @@ function initMaps() {
 		mapTypeControl: false,
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	}
-
+	directionsService = new google.maps.DirectionsService();
 	map = new google.maps.Map(document.getElementById("googleMap"),mapProps);  	
+	
+	toilets = new google.maps.Data();
+	dogEx = new google.maps.Data();	
+	picTable = new google.maps.Data();	
+	walkTrack = new google.maps.Data();	
+
+	var rendererOptions = { draggable: true };  		
+	directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);
 
 	/*new google.maps.Marker({
 		position: latlng, 
@@ -22,16 +35,12 @@ function initMaps() {
 	    title:orginTitle
 	});*/
 	
+
 	//loadLayers();
 }
-
-function loadLayers(layerId,show){
-	var toilets = new google.maps.Data();
-	var dogEx = new google.maps.Data();	
-	var picTable = new google.maps.Data();	
-	var walkTrack = new google.maps.Data();	
-	debugger;
-	if(layerId==='toilets' && show){
+	
+function loadLayers(layerId,show){	
+	if(layerId==='toilets' && show){		
 		toilets.loadGeoJson('./data/toilet.geojson',null, function (feature) {
 			toilets.forEach(function(feature) {
 				addIcon(map,feature,'./images/toilet.png');
@@ -39,12 +48,11 @@ function loadLayers(layerId,show){
 		});	
 		toilets.setStyle({	  
 		  strokeWeight:0,	
-		  fillColor: 'red'
+		  fillColor: 'red',
 		});	
 		toilets.setMap(map);
 	}else if(layerId==='toilets' && !show){
-		console.log("diable")
-		toilets.setMap(null);	
+		toilets.setMap(null);		
 	}
 	if(layerId==='dogEx' && show){
 		dogEx.loadGeoJson('./data/dogexerciseareaequipment.geojson');  
@@ -60,9 +68,10 @@ function loadLayers(layerId,show){
 		picTable.loadGeoJson('./data/picnictable.geojson');  
 		picTable.setStyle({	  
 		  strokeWeight:0,	
-		  fillColor: 'brown',
+		  fillColor: 'transparent',
 		  icon: './images/picnic.png'
 		});			
+
 		picTable.setMap(map);
 	}else if(layerId==='picTable' && !show){
 		picTable.setMap(null);	
@@ -70,7 +79,7 @@ function loadLayers(layerId,show){
 	if(layerId==='walkTrack' && show){
 		walkTrack.loadGeoJson('./data/walkingtrack.geojson');  
 		walkTrack.setStyle({	  
-		  strokeWeight:0,	
+		  strokeWeight:1,	
 		  fillColor: 'orange'
 		});			
 		walkTrack.setMap(map);
@@ -114,8 +123,7 @@ function getDirections(){
 	travelMode: google.maps.DirectionsTravelMode[travelMode]
 	};
 
-	var rendererOptions = { draggable: true };  		
-	directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);
+	
 	directionsDisplay.setMap(map);
 	directionsDisplay.setPanel(document.getElementById("directionsResults"));
 
