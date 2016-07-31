@@ -82,6 +82,7 @@ function loadLayers(layerId,show){
 			heritageIcons,
 			'orange'
 		);
+
 	}else if(layerId==='heritage' && !show){
 		hidePolygonLayer(heritage,heritageIcons);
 	}
@@ -188,8 +189,11 @@ function hidePolygonLayer(layer,icons) {
 }
 
 function addIcon(map, feature, icon, iconArray) {
-	if (feature.getGeometry().getType()==='MultiPolygon') {
-        var bounds=new google.maps.LatLngBounds();
+	// get overall bounds so we can estimate the centre
+    var bounds=new google.maps.LatLngBounds();
+	var geometry = feature.getGeometry().getType();
+	if (geometry==='MultiPolygon') {
+
 		feature.getGeometry().getArray().forEach(function(polys){
             polys.getArray().forEach(function(poly){
 				poly.forEachLatLng(function(latLng){
@@ -197,26 +201,17 @@ function addIcon(map, feature, icon, iconArray) {
 				});
             });
         });
-		mkr = new google.maps.Marker(
-			{
-				position: bounds.getCenter(),
-				map: map,
-				icon: icon
-			}
-		);
 
-		iconArray.push(mkr);
+	}else if (geometry==='Polygon') {
 
-	}else if (feature.getGeometry().getType()==='Polygon') {
-
-		// get overall bounds so we can estimate the centre
-        var bounds=new google.maps.LatLngBounds();
         feature.getGeometry().getArray().forEach(function(path){
             path.getArray().forEach(function(latLng){
 				bounds.extend(latLng);
             });
         });
+    }
 
+	if (geometry==='MultiPolygon' || geometry == 'Polygon') {
 		mkr = new google.maps.Marker(
 			{
 				position: bounds.getCenter(),
@@ -226,7 +221,17 @@ function addIcon(map, feature, icon, iconArray) {
 		);
 
 		iconArray.push(mkr);
-    }
+
+		// somewhat hacky!
+		if (typeof(feature.getProperty("HeritageI4") !== 'undefined')) {
+			console.log('adding listener');
+			mkr.addListener('click', function(event) {
+				infoWindow.setContent("<div class='popupWindow_main'>" + feature.getProperty("HeritageI4").replace("and Setting","") + "</div>");
+				infoWindow.setPosition(event.latLng);
+				infoWindow.open(map);
+			});
+		}
+	}
 }
 
 function getDirections(){
