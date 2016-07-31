@@ -12,7 +12,7 @@ function chat() {
 	console.log('Asking ' + message);
 
 	var newElement = '<div class="row"><div class="col-lg-12"><div class="media"><a class="pull-left" href="#">' +
-					 '<img class="media-object img-circle" src="http://lorempixel.com/30/30/people/7/" alt="">' +
+					 '<img class="media-object img-circle" src="http://lorempixel.com/15/15/people/7/" alt="">' +
                      '</a><div class="media-body"><h4 class="media-heading">Visitor</h4>' +
 					 '<p>' + message + '</p></div>' +
                      '</div></div></div><hr>';
@@ -64,7 +64,7 @@ function chat() {
 		}
 
 		var newElement = '<div class="row"><div class="col-lg-12"><div class="media"><a class="pull-left" href="#">' +
-					 '<img class="media-object img-circle" src="http://lorempixel.com/30/30/people/1/" alt="">' +
+					 '<img class="media-object img-circle" src="../images/logo.png" alt="">' +
                      '</a><div class="media-body"><h4 class="media-heading">Le Bot' + '</h4>' +
 					 '<p>' + botsays + '</p></div>' +
                      '</div></div></div><hr>';
