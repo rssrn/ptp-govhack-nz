@@ -116,66 +116,64 @@
               </tr> 
             </table>  
           </div>
-          <div class="col-md-12 row">         
+          <div class="col-md-6 row">         
             <h4>Directions</h4>
             <div id="directionsResults">                                 
                 Enter <strong>Destination From</strong> under <strong>Get Directions</strong> and Click on Get Directions Button.
             </div>
           </div>  
+          <div class="col-md-6">
+            <div class="col-md-8 col-md-offset-4 row">
+              <div class="portlet portlet-default">
+                  <div class="portlet-heading">
+                      <div class="portlet-title">
+                          <h4><i class="fa fa-circle text-green"></i> Chat Bot</h4>
+                      </div>
+                      <div class="portlet-widgets">
+                          <span class="divider"></span>
+                          <a data-toggle="collapse" data-parent="#accordion" href="#chat"><i class="fa fa-chevron-down"></i></a>
+                      </div>
+                      <div class="clearfix"></div>
+                  </div>
+                  <div id="chat" class="panel-collapse collapse in">
+                      <div>
+                      <div class="portlet-body chat-widget" id='chatbox' style="overflow-y: auto; width: auto; height: 300px;">
+                          <div class="row">
+                              <div class="col-lg-12">
+                                  <div class="media">
+                                      <a class="pull-left" href="#">
+                                          <img class="media-object img-circle" src="../images/logo.png" alt="">
+                                      </a>
+                                      <div class="media-body">
+                                          <h4 class="media-heading">Le Bot
+                                              <span class="small pull-right">Now</span>
+                                          </h4>
+                                          <p>Hi! Tell me how I could make your journey more enjoyable.</p>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <hr>
+                      </div>
+                      </div>
+                      <div class="portlet-footer">
+                          <form role="form">
+                              <div class="form-group">
+                                  <textarea onkeypress="processEvent(event, this)" id="message-textarea" class="form-control" placeholder="Enter message..."></textarea>
+                              </div>
+                              <div class="form-group">
+                                  <button id="message-btn" type="button" class="btn btn-default pull-right">Send</button>
+                                  <div class="clearfix"></div>
+                              </div>
+                          </form>
+                      </div>
+                  </div>
+              </div>
+            </div>   
+          </div>
       </div>     		  			
 </div>
 
 
 
-<div class="container bootstrap snippet">
-    <div class="row">
-        <div class="col-md-4 col-md-offset-4">
-            <div class="portlet portlet-default">
-                <div class="portlet-heading">
-                    <div class="portlet-title">
-                        <h4><i class="fa fa-circle text-green"></i> Chat Bot</h4>
-                    </div>
-                    <div class="portlet-widgets">
-                        <span class="divider"></span>
-                        <a data-toggle="collapse" data-parent="#accordion" href="#chat"><i class="fa fa-chevron-down"></i></a>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-                <div id="chat" class="panel-collapse collapse in">
-                    <div>
-                    <div class="portlet-body chat-widget" id='chatbox' style="overflow-y: auto; width: auto; height: 300px;">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="media">
-                                    <a class="pull-left" href="#">
-                                        <img class="media-object img-circle" src="http://lorempixel.com/30/30/people/1/" alt="">
-                                    </a>
-                                    <div class="media-body">
-                                        <h4 class="media-heading">Le Bot
-                                            <span class="small pull-right">Now</span>
-                                        </h4>
-                                        <p>Hi! Tell me how I could make your journey more enjoyable.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <hr>
-                    </div>
-                    </div>
-                    <div class="portlet-footer">
-                        <form role="form">
-                            <div class="form-group">
-                                <textarea onkeypress="processEvent(event, this)" id="message-textarea" class="form-control" placeholder="Enter message..."></textarea>
-                            </div>
-                            <div class="form-group">
-                                <button id="message-btn" type="button" class="btn btn-default pull-right">Send</button>
-                                <div class="clearfix"></div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- /.col-md-4 -->
-    </div>
-</div>                
+             

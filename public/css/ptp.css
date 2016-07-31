@@ -153,3 +153,18 @@ label{
 	font-family: 'Lato', Calibri, Arial, sans-serif;
 	line-height: 1.5;
 }
+.text-green{
+	color: green;
+}
+.img-circle{
+	width: 100px;
+	height: 100px;
+	border-radius:50%; 
+}
+.bot{
+	width:300px;
+	background: #fff;
+}
+.about-video{
+	margin-top:50px;
+}
