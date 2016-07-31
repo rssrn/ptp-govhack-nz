@@ -23,7 +23,8 @@ function chat() {
     $message.val('');
     $chatbox.scrollTop($chatbox.prop('scrollHeight') - $chatbox.height());
 
-	var url = "http://localhost:5000/bot?q=" + message;
+	var url = "/bot?q=" + message;
+//	var url = "http://localhost:5000/bot?q=" + message;
 	$.get(url, function(data) {
 		console.log(data);
     	var intent = data.intents[0].intent;

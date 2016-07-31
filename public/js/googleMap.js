@@ -171,7 +171,7 @@ function loadLayers(layerId,show){
 		  strokeWeight:0,	
 		  fillColor: 'transparent',
 		  icon: './images/event.png'
-		});			
+		});
 
 		eventsAug.setMap(map);
 
