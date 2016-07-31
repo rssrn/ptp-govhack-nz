@@ -138,7 +138,6 @@ function loadLayers(layerId,show){
 		art.setMap(map);
 
 		art.addListener('click', function(event) {
-			console.log('click on art');
 			infoWindow.setContent("<div class='popupWindow_main'>" + event.feature.getProperty("Title") + "</div>");
 			infoWindow.setPosition(event.latLng);
 			infoWindow.open(map);
@@ -149,7 +148,25 @@ function loadLayers(layerId,show){
 	}
 
 	if(layerId==='event' && show){
-		eventsAug.loadGeoJson('./data/events_chch_201608.geojson');  
+		eventsAug.loadGeoJson('./data/events_chch_201608.geojson', null, function(feature) {
+			// filter for today's date.
+			eventsAug.forEach(function(feature) {
+				var dt_start = feature.getProperty('datetime_start');
+				var dt_end   = feature.getProperty('datetime_end');
+				var date_start = dt_start.substring(0,10);
+				var date_end = dt_end.substring(0,10);
+
+				var now = new Date();
+				
+				var date_current = now.getFullYear() + "-" + ("00" + (now.getMonth() + 1)).slice(-2) + '-' + now.getDate();
+
+				// filter for today's events (and single-day events)
+				if (date_start != date_end || date_start != date_current) {
+					eventsAug.remove(feature);
+				}
+				
+			});
+		});
 		eventsAug.setStyle({	  
 		  strokeWeight:0,	
 		  fillColor: 'transparent',
@@ -159,7 +176,12 @@ function loadLayers(layerId,show){
 		eventsAug.setMap(map);
 
 		eventsAug.addListener('click', function(event) {
-			infoWindow.setContent("<div class='popupWindow_main'>" + event.feature.getProperty("name") + "</div>");
+			// work out when the event starts
+			var dt_start = event.feature.getProperty('datetime_start');
+			var time_start = dt_start.substring(11,16);
+
+
+			infoWindow.setContent("<div class='popupWindow_main'>" + event.feature.getProperty("name") + "<br/>Today at " + time_start + "<br/>" + event.feature.getProperty("location_summary").replace(", Christchurch","") + "</div>");
 			infoWindow.setPosition(event.feature.getGeometry().get());
 			infoWindow.open(map);
 		});
@@ -234,7 +256,6 @@ function addIcon(map, feature, icon, iconArray) {
 
 		// if it has this property then it must be a heritage feature!
 		if (typeof(feature.getProperty("HeritageI4") !== 'undefined')) {
-			console.log('adding listener');
 			mkr.addListener('click', function(event) {
 				infoWindow.setContent("<div class='popupWindow_main'>" + feature.getProperty("HeritageI4").replace("and Setting","") + "</div>");
 				infoWindow.setPosition(event.latLng);
