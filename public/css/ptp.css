@@ -22,6 +22,14 @@ input[type="radio"],input[type="checkbox"]{
 .no-padding{
 	padding: 0
 }
+.navbar-brand {
+	padding: 5px 15px;
+}
+.navbar-brand img{
+	display: inline-block;
+	height: 45px;
+	margin-top:0px; 
+}
 .navbar{
 	background: #2171B5;
 	color:#fff;
