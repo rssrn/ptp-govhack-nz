@@ -136,6 +136,14 @@ function loadLayers(layerId,show){
 		});			
 
 		art.setMap(map);
+
+		art.addListener('click', function(event) {
+			console.log('click on art');
+			infoWindow.setContent("<div class='popupWindow_main'>" + event.feature.getProperty("Title") + "</div>");
+			infoWindow.setPosition(event.latLng);
+			infoWindow.open(map);
+		});
+
 	}else if(layerId==='art' && !show){
 		art.setMap(null);	
 	}
@@ -222,7 +230,9 @@ function addIcon(map, feature, icon, iconArray) {
 
 		iconArray.push(mkr);
 
-		// somewhat hacky!
+		// somewhat hacky way to add descriptions
+
+		// if it has this property then it must be a heritage feature!
 		if (typeof(feature.getProperty("HeritageI4") !== 'undefined')) {
 			console.log('adding listener');
 			mkr.addListener('click', function(event) {
@@ -231,6 +241,7 @@ function addIcon(map, feature, icon, iconArray) {
 				infoWindow.open(map);
 			});
 		}
+
 	}
 }
 
