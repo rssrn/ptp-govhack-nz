@@ -148,6 +148,7 @@ function loadLayers(layerId,show){
 	}
 
 	if(layerId==='event' && show){
+		debugger;
 		eventsAug.loadGeoJson('./data/events_chch_201608.geojson', null, function(feature) {
 			// filter for today's date.
 			eventsAug.forEach(function(feature) {
@@ -158,7 +159,7 @@ function loadLayers(layerId,show){
 
 				var now = new Date();
 				
-				var date_current = now.getFullYear() + "-" + ("00" + (now.getMonth() + 1)).slice(-2) + '-' + now.getDate();
+				var date_current = now.getFullYear() + "-" + ("00" + (now.getMonth() + 1)).slice(-2) + '-' + ("00" + (now.getDate())).slice(-2);
 
 				// filter for today's events (and single-day events)
 				if (date_start != date_end || date_start != date_current) {
